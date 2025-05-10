@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
-  const { collapsed, setCollapsed } = useSidebarContext();
+  const { setCollapsed } = useSidebarContext();
 
   const handleClick = () => {
     if (window.innerWidth < 768) {
@@ -21,25 +21,34 @@ export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
   return (
     <NextLink
       href={href}
-      className="text-default-900 active:bg-none max-w-full"
+      className="text-default-900 active:bg-none max-w-full group"
     >
       <div
         className={clsx(
           isActive
-            ? "bg-[#39B54A] text-black"
-            : "hover:bg-[#39B54A] hover:text-black",
-          "flex gap-2 w-full min-h-[44px] text-white h-full items-center px-3.5 rounded-xl cursor-pointer transition-all duration-150 active:scale-[0.98]"
+            ? "bg-primary/90 !text-white"
+            : "hover:bg-primary/90 hover:!text-green-500",
+          "flex gap-2 w-full min-h-[44px] text-white h-full items-center px-3.5 rounded-md cursor-pointer transition-all duration-150 active:scale-[0.98]"
         )}
         onClick={handleClick}
       >
-        <span className={clsx(isActive ? "text-black" : "text-white", "transition-all duration-150")}>
+        <span
+          className={clsx(
+            isActive ? "text-white" : "text-black group-hover:text-white",
+            "transition-all duration-150"
+          )}
+        >
           {icon}
         </span>
-        <span className={clsx(isActive ? "text-black" : "text-white", "transition-all duration-150")}>
+        <span
+          className={clsx(
+            isActive ? "text-white" : "text-black group-hover:text-white",
+            "transition-all duration-150"
+          )}
+        >
           {title}
         </span>
       </div>
-
-    </NextLink >
+    </NextLink>
   );
 };

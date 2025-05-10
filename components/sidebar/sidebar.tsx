@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Sidebar } from "./sidebar.styles";
-import CompanyCard from "./companyCard";
+import CompanyCard from "./app-logo";
 import { SidebarItem } from "./sidebar-item";
 import { SidebarMenu } from "./sidebar-menu";
 import { useSidebarContext } from "../layout/layout-context";
