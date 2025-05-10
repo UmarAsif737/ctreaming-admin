@@ -74,7 +74,26 @@ export const Content = ({ stats }: { stats: any }) => (
 
       {/* BOTTOM PART CHARTS / METRICS */}
       <div className="flex flex-col xl:flex-row  gap-4 mt-4">
-        <CampaignsByStatus />
+        <CampaignsByStatus
+          data={{
+            active_campaigns:
+              stats?.campaign_stats?.campaigns_by_status?.find(
+                (campWithStatus: { _id: string; count: number }) =>
+                  campWithStatus._id === "active"
+              )?.count || 0,
+            assigned_campaigns:
+              stats?.campaign_stats?.campaigns_by_status?.find(
+                (campWithStatus: { _id: string; count: number }) =>
+                  campWithStatus._id === "assigned"
+              )?.count || 0,
+            completed_campaigns:
+              stats?.campaign_stats?.campaigns_by_status?.find(
+                (campWithStatus: { _id: string; count: number }) =>
+                  campWithStatus._id === "completed"
+              )?.count || 0,
+            total: stats?.campaign_stats?.total_campaigns || 0,
+          }}
+        />
         <CampaignsByStatus />
       </div>
     </div>
