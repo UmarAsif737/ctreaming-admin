@@ -29,42 +29,71 @@ export default function CampaignStats({ data }: { data: Props }) {
     {
       label: "Avg. Budget / Campaign",
       value: `$${safeData.avg_budget_per_campaign.toLocaleString()}`,
-      icon: <MdAttachMoney size={32} />,
+      icon: <MdAttachMoney size={32} style={{ color: "#10B981" }} />,
+      lightBg: "#ECFDF5",
+      lightBorder: "#A7F3D0", // Slightly darker border
+      darkBg: "#064E3B",
+      darkBorder: "#047857", // Darker border for dark mode
+      textColor: "#065F46",
     },
     {
       label: "Avg. Campaigns / Brand",
       value: safeData.avg_campaigns_per_brand.toFixed(2),
-      icon: <MdBarChart size={32} />,
+      icon: <MdBarChart size={32} style={{ color: "#3B82F6" }} />,
+      lightBg: "#EFF6FF",
+      lightBorder: "#BFDBFE", // Slightly darker border
+      darkBg: "#1E3A8A",
+      darkBorder: "#1D4ED8", // Darker border for dark mode
+      textColor: "#1D4ED8",
     },
     {
       label: "Total Campaigns",
       value: safeData.total_campaigns,
-      icon: <MdCampaign size={32} />,
+      icon: <MdCampaign size={32} style={{ color: "#8B5CF6" }} />,
+      lightBg: "#F5F3FF",
+      lightBorder: "#D8B4FE", // Slightly darker border
+      darkBg: "#4C1D95",
+      darkBorder: "#7C3AED", // Darker border for dark mode
+      textColor: "#7C3AED",
     },
     {
       label: "Total Budget",
       value: `$${safeData.total_budget.toLocaleString()}`,
-      icon: <MdBusinessCenter size={32} />,
+      icon: <MdBusinessCenter size={32} style={{ color: "#EC4899" }} />,
+      lightBg: "#FDF2F8",
+      lightBorder: "#F9A8D4", // Slightly darker border
+      darkBg: "#831843",
+      darkBorder: "#DB2777", // Darker border for dark mode
+      textColor: "#DB2777",
     },
   ];
 
   return (
-    <div className="flex-1 h-full p-4 rounded-xl shadow bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-700 flex flex-col">
-      {/* Heading */}
+    <div className="flex-1 h-full p-4 rounded-xl shadow bg-white dark:bg-[#0f172a] border border-borderGray dark:border-gray-700 flex flex-col">
       <div className="mb-4">
-        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
-          Campaign Financial & Performance Metrics
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+          Campaign Performance Overview
         </h2>
       </div>
 
-      {/* 2x2 Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 sm:grid-rows-2 gap-4 flex-1">
         {cards.map((card, idx) => (
           <div
             key={idx}
-            className="flex flex-col justify-center items-center text-center rounded-lg border p-6 bg-gray-50 dark:bg-slate-800 text-gray-800 dark:text-gray-200"
+            className="flex flex-col justify-center items-center text-center rounded-lg border-2 p-6 shadow transition-colors duration-300"
+            style={{
+              backgroundColor: theme === "dark" ? card.darkBg : card.lightBg,
+              borderColor:
+                theme === "dark" ? card.darkBorder : card.lightBorder,
+              color: theme === "dark" ? "#F1F5F9" : card.textColor,
+            }}
           >
-            <div className="mb-2 text-indigo-600 dark:text-indigo-300 border rounded-full p-2">
+            <div
+              className="mb-2 border rounded-full p-2 bg-white dark:bg-[#0f172a] shadow"
+              style={{
+                borderColor: theme === "dark" ? "#475569" : "#D1D5DB",
+              }}
+            >
               {card.icon}
             </div>
             <p className="text-sm font-medium mb-1">{card.label}</p>
