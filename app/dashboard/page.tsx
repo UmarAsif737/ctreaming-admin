@@ -1,5 +1,5 @@
 // pages/index.tsx
-// import { getDashboardStats } from "@/actions/dashboard-stats";
+import { getDashboardStats } from "@/actions/dashboard-stats.actions";
 import { Content } from "@/components/home/content";
 import dynamic from "next/dynamic";
 
@@ -13,13 +13,13 @@ import dynamic from "next/dynamic";
 // );
 
 const Home = async () => {
-  // const { data, error } = await getDashboardStats();
+  const { data, error } = await getDashboardStats();
 
-  // if (!data || error) {
-  //   return <div>Error loading data</div>;
-  // }
+  if (!data || error) {
+    return <div>Error loading data</div>;
+  }
 
-  return <Content stats={null} />;
+  return <Content stats={data} />;
 };
 
 export default Home;

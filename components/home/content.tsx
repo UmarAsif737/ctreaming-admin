@@ -36,28 +36,33 @@ export const Content = ({ stats }: { stats: any }) => (
       <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 grid-cols-1 gap-5 justify-center w-full">
         <TaskCountCard
           title="Total Admins"
-          count={21}
+          count={stats?.total_admin_users + 1}
           subtitle=""
           color="white"
           chartColor="orange-500"
         />
         <TaskCountCard
           title="InActive Users"
-          count={2}
+          count={
+            stats?.user_stats?.active_users?.find(
+              (user: { status: string; count: number }) =>
+                user.status === "inactive"
+            )?.count || 0
+          }
           subtitle=""
           color="white"
           chartColor="orange-500"
         />
         <TaskCountCard
           title="Total Messages"
-          count={34}
+          count={stats?.chat_stats?.total_messages || 0}
           subtitle=""
           color="white"
           chartColor="orange-500"
         />
         <TaskCountCard
           title="Total Chats Initiated"
-          count={21}
+          count={stats?.chat_stats?.total_chats || 0}
           subtitle=""
           color="white"
           chartColor="orange-500"
