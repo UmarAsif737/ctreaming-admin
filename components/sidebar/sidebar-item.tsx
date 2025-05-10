@@ -34,7 +34,7 @@ export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
       >
         <span
           className={clsx(
-            isActive ? "text-white" : "text-black group-hover:text-white",
+            isActive ? "text-[#fff]" : "text-black group-hover:text-white",
             "transition-all duration-150"
           )}
         >
@@ -42,7 +42,7 @@ export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
         </span>
         <span
           className={clsx(
-            isActive ? "!text-white" : "text-black group-hover:text-white",
+            isActive ? "text-[#fff]" : "text-black group-hover:text-white",
             "transition-all duration-150"
           )}
         >

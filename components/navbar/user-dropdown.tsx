@@ -35,7 +35,7 @@ export const UserDropdown = () => {
         <DropdownTrigger>
           <Avatar
             as="button"
-            className="text-black bg-[#39B54A] "
+            className="dark:!text-red-500 text-red-500 dark:bg-primary2 "
             size="md"
             name={getAvatarInitial()}
           />
