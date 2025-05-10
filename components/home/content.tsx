@@ -9,6 +9,7 @@ import { TaskCountCard } from "./card-balance1";
 // import { CardAgents } from "./card-agents";
 // import { Link } from "@heroui/react";
 import NextLink from "next/link";
+import CampaignsByStatus from "./stats/users-by-type-info";
 
 // Dynamically import charts
 // const Chart = dynamic(() => import("../charts/steam"), { ssr: false });
@@ -73,7 +74,8 @@ export const Content = ({ stats }: { stats: any }) => (
 
       {/* BOTTOM PART CHARTS / METRICS */}
       <div className="flex flex-col xl:flex-row  gap-4 mt-4">
-        
+        <CampaignsByStatus />
+        <CampaignsByStatus />
       </div>
     </div>
   </div>

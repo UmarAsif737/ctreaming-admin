@@ -1,6 +1,7 @@
 "use client";
 
 import { MdCampaign } from "react-icons/md";
+import { useTheme } from "next-themes";
 
 type Props = {
   total: number;
@@ -9,11 +10,9 @@ type Props = {
   assigned_campaigns: number;
 };
 
-export default function UsersStatsByType({
-  data: dynamicData,
-}: {
-  data: Props;
-}) {
+export default function CampaignsByStatus({ data: dynamicData }: { data: Props }) {
+  const { theme } = useTheme();
+
   const data = {
     total: dynamicData?.total || 13,
     active_campaigns: dynamicData?.active_campaigns || 8,
@@ -21,61 +20,115 @@ export default function UsersStatsByType({
     assigned_campaigns: dynamicData?.assigned_campaigns || 4,
   };
 
+  // Theme-based color utility
+  const getStyles = (type: "active" | "assigned" | "completed") => {
+    const themes = {
+      active: {
+        light: {
+          bg: "#E0F2FE",
+          border: "#38BDF8",
+          text: "#0284C7",
+        },
+        dark: {
+          bg: "#0C4A6E",
+          border: "#38BDF8",
+          text: "#E0F2FE",
+        },
+      },
+      assigned: {
+        light: {
+          bg: "#FEF9C3",
+          border: "#FACC15",
+          text: "#CA8A04",
+        },
+        dark: {
+          bg: "#3A3000",
+          border: "#FACC15",
+          text: "#FEF9C3",
+        },
+      },
+      completed: {
+        light: {
+          bg: "#D1FAE5",
+          border: "#34D399",
+          text: "#059669",
+        },
+        dark: {
+          bg: "#064E3B",
+          border: "#34D399",
+          text: "#D1FAE5",
+        },
+      },
+    };
+
+    return themes[type][theme === "dark" ? "dark" : "light"];
+  };
+
   return (
-    <div className="bg-white p-6 rounded-xl shadow  flex-1 flex flex-col ">
+    <div className="p-6 rounded-xl shadow flex-1 flex flex-col bg-white dark:bg-[#0f172a] border-1 border-borderGray transition-colors">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-800">
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
           Campaign Distribution by Status
         </h2>
       </div>
 
-      <div className="flex flex-row gap-2 h-full flex-1">
-        <div className="bg-gray-50/50 flex flex-col items-center justify-center border-[#FFDF88]/50 border-2 flex-1 gap-1 rounded-sm">
-          <div className="w-14 h-14 border-2 border-red-500 flex items-center justify-center rounded-full">
-            <MdCampaign color="red" size={40} />
+      <div className="flex flex-row gap-3 h-full">
+        {/* All Campaigns */}
+        <div
+          className="flex flex-col items-center justify-center border-2 flex-1 gap-2 rounded-lg px-4 py-6"
+          style={{
+            backgroundColor: theme === "dark" ? "#1F2937" : "#F3F4F6",
+            borderColor: theme === "dark" ? "#6B7280" : "#9CA3AF",
+          }}
+        >
+          <div
+            className="w-14 h-14 flex items-center justify-center rounded-full"
+            style={{
+              backgroundColor: theme === "dark" ? "#374151" : "#E5E7EB",
+            }}
+          >
+            <MdCampaign color={theme === "dark" ? "#F9FAFB" : "#1F2937"} size={36} />
           </div>
-
-          <p className="text-black font-semibold text-md sm:text-lg">
+          <p className="font-semibold text-sm text-gray-700 dark:text-gray-300">
             All Campaigns
           </p>
-
-          <p className="text-2xl sm:text-4xl text-red-500 font-bold ">
+          <p className="text-3xl font-bold text-gray-900 dark:text-white">
             {data.total}
           </p>
         </div>
 
-        <div className="flex-1 flex flex-col gap-2 text-black">
-          <div className="bg-gray-50 flex flex-col items-center justify-center border-red-600 border-2 bg-red-100/40 rounded-sm flex-1 gap-1">
-            <p className="text-black font-semibold text-md sm:text-lg">
-              Active
-            </p>
-
-            <p className="text-2xl sm:text-4xl  font-bold">
-              {data.active_campaigns}
-            </p>
-          </div>
-
-          <div className="bg-gray-50 flex flex-col items-center justify-center border-2 border-[#FFD63A] bg-[#FFD63A]/15 rounded-sm flex-1 gap-1">
-            <p className="text-black font-semibold text-md sm:text-lg">
-              Assigned
-            </p>
-
-            <p className="text-2xl sm:text-4xl  font-bold">
-              {data.assigned_campaigns}
-            </p>
-          </div>
-
-          <div className="bg-gray-50 flex flex-col items-center justify-center border-2 border-[#FFF085] bg-[#FFF085]/15 rounded-sm flex-1 gap-1">
-            <p className="text-black font-semibold text-md sm:text-lg">
-              Completed
-            </p>
-
-            <p className="text-2xl sm:text-4xl  font-bold">
-              {data.completed_campaigns}
-            </p>
-          </div>
+        {/* Status Section */}
+        <div className="flex-1 flex flex-col gap-3">
+          {/* Active */}
+          <Card label="Active" count={data.active_campaigns} style={getStyles("active")} />
+          <Card label="Assigned" count={data.assigned_campaigns} style={getStyles("assigned")} />
+          <Card label="Completed" count={data.completed_campaigns} style={getStyles("completed")} />
         </div>
       </div>
+    </div>
+  );
+}
+
+function Card({
+  label,
+  count,
+  style,
+}: {
+  label: string;
+  count: number;
+  style: { bg: string; border: string; text: string };
+}) {
+  return (
+    <div
+      className="flex flex-col items-center justify-center border-2 rounded-lg flex-1 py-4"
+      style={{
+        backgroundColor: style.bg,
+        borderColor: style.border,
+        color: style.text,
+      }}
+    >
+      <p className="font-medium text-sm">{label}</p>
+      <p className="text-3xl font-bold">{count}</p>
     </div>
   );
 }
