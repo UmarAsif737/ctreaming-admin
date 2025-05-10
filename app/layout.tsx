@@ -7,30 +7,30 @@ import { getSession } from "@/auth";
 
 export const metadata: Metadata = {
   title: {
-    default: 'DocuKar Admin',
-    template: `%s | DocuKar`,
+    default: 'Ctreaming Admin',
+    template: `%s | Ctreaming`,
   },
-  description: 'DocuKar is a comprehensive platform for storing and managing vehicle and driver documents, with timely renewal reminders and efficient organization for hassle-free documentation.',
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-  },
-  openGraph: {
-    title: 'DocuKar Admin- Simplify Document Management',
-    description: 'Store, manage, and get renewal reminders for vehicle and driver documents with ease using DocuKar.',
-    url: 'https://admin.docukar.com/',
-    siteName: 'DocuKar Admin',
-    images: [
-      {
-        url: '/public/docukar-d.svg',
-        width: 800,
-        height: 600,
-        alt: 'DocuKar - Simplify Document Management',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
+  description: 'Will add description soon',
+  // icons: {
+  //   icon: '/favicon.ico',
+  //   apple: '/apple-touch-icon.png',
+  // },
+  // openGraph: {
+  //   title: 'Ctreaming Admin',
+  //   description: 'Will Add soon',
+  //   url: '/',
+  //   siteName: 'DocuKar Admin',
+  //   images: [
+  //     {
+  //       url: '/public/docukar-d.svg',
+  //       width: 800,
+  //       height: 600,
+  //       alt: 'DocuKar - Simplify Document Management',
+  //     },
+  //   ],
+  //   locale: 'en_US',
+  //   type: 'website',
+  // },
   viewport: 'width=device-width, initial-scale=1.0',
 };
 
