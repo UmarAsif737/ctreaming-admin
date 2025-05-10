@@ -2,9 +2,9 @@
 
 import { useTheme } from "next-themes";
 import {
-  MdBarChart,
-  MdCampaign,
-  MdBusinessCenter,
+  MdTrendingUp,
+  MdWorkOutline,
+  MdCheckCircleOutline,
 } from "react-icons/md";
 
 type Props = {
@@ -22,44 +22,45 @@ export default function CampaignsByStatus({ data }: { data: Props }) {
     total_budget: data?.total_budget ?? 1180517,
   };
 
-  const cards = [
-    {
-      label: "Active Campaigns",
-      value: safeData.avg_campaigns_per_brand.toFixed(2),
-      icon: <MdBarChart size={32} style={{ color: "#3B82F6" }} />,
-      lightBg: "#EFF6FF",
-      lightBorder: "#BFDBFE",
-      darkBg: "#1E3A8A",
-      darkBorder: "#1D4ED8",
-      textColor: "#1D4ED8",
-    },
-    {
-      label: "Assigned Campaigns",
-      value: safeData.total_campaigns,
-      icon: <MdCampaign size={32} style={{ color: "#8B5CF6" }} />,
-      lightBg: "#F5F3FF",
-      lightBorder: "#D8B4FE",
-      darkBg: "#4C1D95",
-      darkBorder: "#7C3AED",
-      textColor: "#7C3AED",
-    },
-    {
-      label: "Completed Campaigns",
-      value: `$${safeData.total_budget.toLocaleString()}`,
-      icon: <MdBusinessCenter size={32} style={{ color: "#EC4899" }} />,
-      lightBg: "#FDF2F8",
-      lightBorder: "#F9A8D4",
-      darkBg: "#831843",
-      darkBorder: "#DB2777",
-      textColor: "#DB2777",
-    },
-  ];
+const cards = [
+  {
+    label: "Active Campaigns",
+    value: safeData.avg_campaigns_per_brand.toFixed(2),
+    icon: <MdTrendingUp size={32} style={{ color: theme === "dark" ? "#6EE7B7" : "#059669" }} />,
+    lightBg: "#ECFDF5",
+    lightBorder: "#6EE7B7",
+    darkBg: "#064E3B",
+    darkBorder: "#10B981",
+    textColor: "#059669",
+  },
+  {
+    label: "Assigned Campaigns",
+    value: safeData.total_campaigns,
+    icon: <MdWorkOutline size={32} style={{ color: theme === "dark" ? "#FCD34D" : "#D97706" }} />,
+    lightBg: "#FEF3C7",
+    lightBorder: "#FCD34D",
+    darkBg: "#78350F",
+    darkBorder: "#FBBF24",
+    textColor: "#D97706",
+  },
+  {
+    label: "Completed Campaigns",
+    value: `$${safeData.total_budget.toLocaleString()}`,
+    icon: <MdCheckCircleOutline size={32} style={{ color: theme === "dark" ? "#60A5FA" : "#2563EB" }} />,
+    lightBg: "#EFF6FF",
+    lightBorder: "#60A5FA",
+    darkBg: "#1E3A8A",
+    darkBorder: "#3B82F6",
+    textColor: "#2563EB",
+  },
+];
+
 
   return (
     <div className="flex-1 h-full p-4 rounded-xl shadow bg-white dark:bg-[#0f172a] border border-borderGray dark:border-gray-700 flex flex-col">
       <div className="mb-4">
         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          Campaign Performance Overview
+          Campaign By status
         </h2>
       </div>
 
