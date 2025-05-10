@@ -12,6 +12,10 @@ body {
   box-sizing: border-box;
 }
 
+@theme {
+  --color-primary: #E01616;
+}
+
 /* Custom Scrollbar Styling for WebKit Browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 4px; /* Set width of the vertical scrollbar */
