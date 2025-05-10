@@ -1,134 +1,118 @@
 "use client";
 
-import { MdCampaign } from "react-icons/md";
 import { useTheme } from "next-themes";
+import {
+  MdBarChart,
+  MdCampaign,
+  MdBusinessCenter,
+} from "react-icons/md";
 
 type Props = {
-  total: number;
-  active_campaigns: number;
-  completed_campaigns: number;
-  assigned_campaigns: number;
+  avg_campaigns_per_brand?: number;
+  total_campaigns?: number;
+  total_budget?: number;
 };
 
-export default function CampaignsByStatus({ data: dynamicData }: { data: Props }) {
+export default function CampaignsByStatus({ data }: { data: Props }) {
   const { theme } = useTheme();
 
-  const data = {
-    total: dynamicData?.total || 13,
-    active_campaigns: dynamicData?.active_campaigns || 8,
-    completed_campaigns: dynamicData?.completed_campaigns || 1,
-    assigned_campaigns: dynamicData?.assigned_campaigns || 4,
+  const safeData = {
+    avg_campaigns_per_brand: data?.avg_campaigns_per_brand ?? 1.55,
+    total_campaigns: data?.total_campaigns ?? 62,
+    total_budget: data?.total_budget ?? 1180517,
   };
 
-  // Theme-based color utility
-  const getStyles = (type: "active" | "assigned" | "completed") => {
-    const themes = {
-      active: {
-        light: {
-          bg: "#E0F2FE",
-          border: "#38BDF8",
-          text: "#0284C7",
-        },
-        dark: {
-          bg: "#0C4A6E",
-          border: "#38BDF8",
-          text: "#E0F2FE",
-        },
-      },
-      assigned: {
-        light: {
-          bg: "#FEF9C3",
-          border: "#FACC15",
-          text: "#CA8A04",
-        },
-        dark: {
-          bg: "#3A3000",
-          border: "#FACC15",
-          text: "#FEF9C3",
-        },
-      },
-      completed: {
-        light: {
-          bg: "#D1FAE5",
-          border: "#34D399",
-          text: "#059669",
-        },
-        dark: {
-          bg: "#064E3B",
-          border: "#34D399",
-          text: "#D1FAE5",
-        },
-      },
-    };
-
-    return themes[type][theme === "dark" ? "dark" : "light"];
-  };
+  const cards = [
+    {
+      label: "Active Campaigns",
+      value: safeData.avg_campaigns_per_brand.toFixed(2),
+      icon: <MdBarChart size={32} style={{ color: "#3B82F6" }} />,
+      lightBg: "#EFF6FF",
+      lightBorder: "#BFDBFE",
+      darkBg: "#1E3A8A",
+      darkBorder: "#1D4ED8",
+      textColor: "#1D4ED8",
+    },
+    {
+      label: "Assigned Campaigns",
+      value: safeData.total_campaigns,
+      icon: <MdCampaign size={32} style={{ color: "#8B5CF6" }} />,
+      lightBg: "#F5F3FF",
+      lightBorder: "#D8B4FE",
+      darkBg: "#4C1D95",
+      darkBorder: "#7C3AED",
+      textColor: "#7C3AED",
+    },
+    {
+      label: "Completed Campaigns",
+      value: `$${safeData.total_budget.toLocaleString()}`,
+      icon: <MdBusinessCenter size={32} style={{ color: "#EC4899" }} />,
+      lightBg: "#FDF2F8",
+      lightBorder: "#F9A8D4",
+      darkBg: "#831843",
+      darkBorder: "#DB2777",
+      textColor: "#DB2777",
+    },
+  ];
 
   return (
-    <div className="p-6 rounded-xl shadow flex-1 flex flex-col bg-white dark:bg-[#0f172a] border-1 border-borderGray transition-colors">
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex-1 h-full p-4 rounded-xl shadow bg-white dark:bg-[#0f172a] border border-borderGray dark:border-gray-700 flex flex-col">
+      <div className="mb-4">
         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          Campaign Distribution by Status
+          Campaign Performance Overview
         </h2>
       </div>
 
-      <div className="flex flex-row gap-3 h-full">
-        {/* All Campaigns */}
-        <div
-          className="flex flex-col items-center justify-center border-2 flex-1 gap-2 rounded-lg px-4 py-6"
-          style={{
-            backgroundColor: theme === "dark" ? "#1F2937" : "#F3F4F6",
-            borderColor: theme === "dark" ? "#6B7280" : "#9CA3AF",
-          }}
-        >
+      <div className="flex flex-col sm:flex-row w-full gap-4">
+        {/* Left Column - One Box (on small screens it takes full width) */}
+        <div className="w-full sm:w-1/2 flex flex-col justify-between ">
           <div
-            className="w-14 h-14 flex items-center justify-center rounded-full"
+            className="flex flex-col justify-center items-center text-center rounded-lg border-2 p-6 shadow transition-colors duration-300 h-full"
             style={{
-              backgroundColor: theme === "dark" ? "#374151" : "#E5E7EB",
+              backgroundColor: theme === "dark" ? cards[0].darkBg : cards[0].lightBg,
+              borderColor: theme === "dark" ? cards[0].darkBorder : cards[0].lightBorder,
+              color: theme === "dark" ? "#F1F5F9" : cards[0].textColor,
             }}
           >
-            <MdCampaign color={theme === "dark" ? "#F9FAFB" : "#1F2937"} size={36} />
+            <div
+              className="mb-2 border rounded-full p-2 bg-white dark:bg-[#0f172a] shadow"
+              style={{
+                borderColor: theme === "dark" ? "#475569" : "#D1D5DB",
+              }}
+            >
+              {cards[0].icon}
+            </div>
+            <p className="text-sm font-medium mb-1">{cards[0].label}</p>
+            <p className="text-xl font-bold">{cards[0].value}</p>
           </div>
-          <p className="font-semibold text-sm text-gray-700 dark:text-gray-300">
-            All Campaigns
-          </p>
-          <p className="text-3xl font-bold text-gray-900 dark:text-white">
-            {data.total}
-          </p>
         </div>
 
-        {/* Status Section */}
-        <div className="flex-1 flex flex-col gap-3">
-          {/* Active */}
-          <Card label="Active" count={data.active_campaigns} style={getStyles("active")} />
-          <Card label="Assigned" count={data.assigned_campaigns} style={getStyles("assigned")} />
-          <Card label="Completed" count={data.completed_campaigns} style={getStyles("completed")} />
+        {/* Right Column - Two Boxes (on small screens they take full width) */}
+        <div className="w-full sm:w-1/2 flex flex-col gap-4">
+          {cards.slice(1).map((card, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col justify-center items-center text-center rounded-lg border-2 p-6 shadow transition-colors duration-300"
+              style={{
+                backgroundColor: theme === "dark" ? card.darkBg : card.lightBg,
+                borderColor: theme === "dark" ? card.darkBorder : card.lightBorder,
+                color: theme === "dark" ? "#F1F5F9" : card.textColor,
+              }}
+            >
+              <div
+                className="mb-2 border rounded-full p-2 bg-white dark:bg-[#0f172a] shadow"
+                style={{
+                  borderColor: theme === "dark" ? "#475569" : "#D1D5DB",
+                }}
+              >
+                {card.icon}
+              </div>
+              <p className="text-sm font-medium mb-1">{card.label}</p>
+              <p className="text-xl font-bold">{card.value}</p>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  );
-}
-
-function Card({
-  label,
-  count,
-  style,
-}: {
-  label: string;
-  count: number;
-  style: { bg: string; border: string; text: string };
-}) {
-  return (
-    <div
-      className="flex flex-col items-center justify-center border-2 rounded-lg flex-1 py-4"
-      style={{
-        backgroundColor: style.bg,
-        borderColor: style.border,
-        color: style.text,
-      }}
-    >
-      <p className="font-medium text-sm">{label}</p>
-      <p className="text-3xl font-bold">{count}</p>
     </div>
   );
 }
