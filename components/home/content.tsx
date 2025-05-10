@@ -33,6 +33,8 @@ export const Content = ({ stats }: { stats: any }) => (
   <div className="h-full lg:px-6">
     <div className="flex flex-col gap-2 mx-5 md:mx-0">
       <h3 className="text-xl font-semibold mt-5">All Stats</h3>
+
+      {/* TOP MINIMAL STATS */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 grid-cols-1 gap-5 justify-center w-full">
         <TaskCountCard
           title="Total Admins"
@@ -68,7 +70,11 @@ export const Content = ({ stats }: { stats: any }) => (
           chartColor="orange-500"
         />
       </div>
+
+      {/* BOTTOM PART CHARTS / METRICS */}
+      <div className="flex flex-col xl:flex-row  gap-4 mt-4">
+        
+      </div>
     </div>
-    
   </div>
 );
