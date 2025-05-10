@@ -45,7 +45,7 @@ const authOptions: AuthOptions = {
             password: credentials?.password,
           };
           const response = await axiosInstance.post(
-            "/api/admin/sign-in",
+            "/api/admin/auth/sign-in",
             credentialDetails,
             {
               headers: {
