@@ -1,5 +1,5 @@
 export const IMAGES = {
-  LOGO: "/logo-new.svg",
-  AUTH_IMAGE: "/illustration_login.png",
+  LOGO: "./app-logo.png",
+  AUTH_IMAGE: "./auth_image.png",
   DEFAULT_USER: "/default-user.jpg",
 };
