@@ -1,11 +1,12 @@
 {
-  "name": "dashboard",
+  "name": "ctreaming-admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon",
-    "build": "next build && tsc --project tsconfig.server.json",
-    "start": "NODE_ENV=production PORT=3020 node dist/server.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@heroui/react": "2.6.14",
