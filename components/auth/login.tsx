@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { LoginSchema } from "@/helpers/schemas";
-import { LoginFormType } from "@/helpers/types";
+import { LoginFormType } from "@/types/index.types";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -9,7 +10,7 @@ import { toast } from "sonner";
 import React from "react";
 import Image from "next/image";
 import Button from "../shared/button";
-import SectionHeadings from "../shared/heading";
+import SectionHeadings from "../shared/Heading";
 import { IMAGES } from "@/public";
 
 function LoginAccount({ searchParams }: { searchParams: { error?: string } }) {
@@ -39,7 +40,7 @@ function LoginAccount({ searchParams }: { searchParams: { error?: string } }) {
   }, [searchParams, router]);
 
   return (
-    <main className="flex flex-col h-screen items-center px-20 pt-5 mt-4 pb-9 bg-white dark:bg-black max-h-screen max-md:px-5">
+    <main className="flex flex-col h-screen items-center px-20 pt-5 mt-4 pb-9 bg-white  max-h-screen max-md:px-5">
       <section className="flex flex-col-reverse md:flex-row flex-wrap gap-10 justify-center xl:justify-between items-center w-full max-w-[1240px] flex-grow">
         <div className="flex flex-col justify-center  max-w-xl xl:justify-between w-full md:w-6/12">
           <Formik
@@ -48,20 +49,20 @@ function LoginAccount({ searchParams }: { searchParams: { error?: string } }) {
             onSubmit={handleLogin}
           >
             {({ handleSubmit, isSubmitting }) => (
-              <Form className="flex flex-col p-6 bg-white dark:bg-[#18181b] border max-w-2xl border-black dark:border-white rounded-custom-sm rounded-3xl shadow-custom-black dark:shadow-custom-white ">
+              <Form className="flex flex-col p-6 bg-white  border max-w-2xl border-black  rounded-custom-sm rounded-3xl shadow-custom-black  ">
                 <SectionHeadings title="Login & Continue" description="" />
 
                 <hr className=" w-full border border-[#5F5F5F]" />
 
                 {/* Input Fields */}
                 <div className="flex flex-col mt-5 md:mt-10 w-full">
-                  <label className="text-base font-medium text-gray-600 dark:text-gray-300">
+                  <label className="text-base font-medium text-gray-600 ">
                     Your Email
                   </label>
                   <Field
                     name="email"
                     type="email"
-                    placeholder="e.g. johndoe@gmail.com"
+                    placeholder="e.g. engineerbabu@gmail.com"
                     className="block w-full py-3 rounded-xl px-4 mt-2 placeholder-gray-500 border border-gray-200 focus:outline-none "
                   />
                   <ErrorMessage
@@ -70,7 +71,7 @@ function LoginAccount({ searchParams }: { searchParams: { error?: string } }) {
                     className="text-red-600 text-sm mt-1"
                   />
 
-                  <label className="mt-3 text-base font-medium text-gray-600 dark:text-gray-300">
+                  <label className="mt-3 text-base font-medium text-gray-600 ">
                     Your Password
                   </label>
                   <Field
@@ -88,7 +89,7 @@ function LoginAccount({ searchParams }: { searchParams: { error?: string } }) {
                   <Button
                     type="submit"
                     className="w-full mt-5"
-                    variant="black"
+                    variant="primary"
                     // disabled={isSubmitting}
                   >
                     {loading ? "Signing In..." : "Login"}
