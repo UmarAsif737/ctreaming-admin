@@ -1,14 +1,8 @@
 import {
   LayoutDashboard,
   User,
-  Car,
-  CarFront,
-  BookUser,
-  FileText,
   ShieldPlus,
-  Book,
-  FileStack,
-  Contact2Icon
+  Contact2Icon,
 } from "lucide-react";
 
 export const routes = [
@@ -23,33 +17,16 @@ export const routes = [
     href: "/dashboard/accounts",
   },
   {
-    title: "Vehicles",
-    icon: Car,
-    href: "/dashboard/vehicles",
+    title: "Manage Campaigns",
+    icon: Contact2Icon,
+    href: "/dashboard/campaigns",
   },
-  {
-    title: "Drivers",
-    icon: CarFront,
-    href: "/dashboard/drivers",
-  },
-  {
-    title: "Contact Forms",
-    icon: BookUser,
-    href: "/dashboard/contact",
-  },
-  {
-    title: "Documents for Renewal",
-    icon: FileStack,
-    href: "/dashboard/renewal-documents",
-  },
+
+ 
   {
     title: "Add New Admin",
     icon: ShieldPlus,
     href: "/dashboard/admin",
   },
-  {
-    title: "Manage POC",
-    icon: Contact2Icon,
-    href: "/dashboard/poc",
-  },
+
 ];
