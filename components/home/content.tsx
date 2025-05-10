@@ -10,6 +10,7 @@ import { TaskCountCard } from "./card-balance1";
 // import { Link } from "@heroui/react";
 import NextLink from "next/link";
 import CampaignsByStatus from "./stats/users-by-type-info";
+import CampaignMetrics from "./stats/campaign-metrics";
 
 // Dynamically import charts
 // const Chart = dynamic(() => import("../charts/steam"), { ssr: false });
@@ -94,7 +95,7 @@ export const Content = ({ stats }: { stats: any }) => (
             total: stats?.campaign_stats?.total_campaigns || 0,
           }}
         />
-        <CampaignsByStatus />
+        <CampaignMetrics />
       </div>
     </div>
   </div>
