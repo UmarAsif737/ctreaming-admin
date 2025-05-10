@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     template: `%s | Ctreaming`,
   },
   description: 'Will add description soon',
-  // icons: {
-  //   icon: '/favicon.ico',
-  //   apple: '/apple-touch-icon.png',
-  // },
+  icons: {
+    icon: '/public/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
   // openGraph: {
   //   title: 'Ctreaming Admin',
   //   description: 'Will Add soon',
