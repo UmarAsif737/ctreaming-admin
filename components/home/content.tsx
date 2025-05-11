@@ -105,6 +105,8 @@ export const Content = ({ stats }: { stats: any }) => (
           }}
         />
       </div>
+
+      {/* Last Charts Part!! */}
     </div>
   </div>
 );
