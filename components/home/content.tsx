@@ -152,16 +152,16 @@ export const Content = ({ stats }: { stats: any }) => (
           <div className="w-full bg-default-50 shadow-lg rounded-2xl p-6">
             <VerifiedAndUnVerifiedChart
               verified={
-                stats?.user_stats?.verified_users.find(
+                stats?.user_stats?.verified_users?.find(
                   (user: { status: string; count: number }) =>
                     user?.status === "verified"
-                ) || 0
+                )?.count || 0
               }
               nonVerified={
-                stats?.user_stats?.verified_users.find(
+                stats?.user_stats?.verified_users?.find(
                   (user: { status: string; count: number }) =>
                     user?.status === "unverified"
-                ) || 0
+                )?.count || 0
               }
             />
           </div>
