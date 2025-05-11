@@ -24,7 +24,9 @@ interface TotalCountsChartByUserTypeProps {
   data: number[];
 }
 
-const TotalCountsChartByUserType: React.FC<TotalCountsChartByUserTypeProps> = ({ data }) => {
+const TotalCountsChartByUserType: React.FC<TotalCountsChartByUserTypeProps> = ({
+  data,
+}) => {
   console.log("🚀 ~ data:", data);
 
   const barChartData = {
@@ -40,12 +42,11 @@ const TotalCountsChartByUserType: React.FC<TotalCountsChartByUserTypeProps> = ({
         label: "Total Counts",
         data,
         backgroundColor: [
-          "#191a23",
-          "#311f2c",
-          "#22c55e",
-          "#f6aa08",
-          "#9ca3a6",
-          "#88d392",
+          "#1d4ed8", 
+          "#ec4899", 
+          "#10b981", 
+          "#f97316", 
+          "#6b7280", 
         ],
       },
     ],
