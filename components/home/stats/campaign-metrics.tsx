@@ -31,9 +31,9 @@ export default function CampaignStats({ data }: { data: Props }) {
       value: `$${safeData.avg_budget_per_campaign.toLocaleString()}`,
       icon: <MdAttachMoney size={32} style={{ color: "#10B981" }} />,
       lightBg: "#ECFDF5",
-      lightBorder: "#A7F3D0", // Slightly darker border
+      lightBorder: "#A7F3D0",
       darkBg: "#064E3B",
-      darkBorder: "#047857", // Darker border for dark mode
+      darkBorder: "#047857",
       textColor: "#065F46",
     },
     {
@@ -41,9 +41,9 @@ export default function CampaignStats({ data }: { data: Props }) {
       value: safeData.avg_campaigns_per_brand.toFixed(2),
       icon: <MdBarChart size={32} style={{ color: "#3B82F6" }} />,
       lightBg: "#EFF6FF",
-      lightBorder: "#BFDBFE", // Slightly darker border
+      lightBorder: "#BFDBFE",
       darkBg: "#1E3A8A",
-      darkBorder: "#1D4ED8", // Darker border for dark mode
+      darkBorder: "#1D4ED8",
       textColor: "#1D4ED8",
     },
     {
@@ -51,9 +51,9 @@ export default function CampaignStats({ data }: { data: Props }) {
       value: safeData.total_campaigns,
       icon: <MdCampaign size={32} style={{ color: "#8B5CF6" }} />,
       lightBg: "#F5F3FF",
-      lightBorder: "#D8B4FE", // Slightly darker border
+      lightBorder: "#D8B4FE",
       darkBg: "#4C1D95",
-      darkBorder: "#7C3AED", // Darker border for dark mode
+      darkBorder: "#7C3AED",
       textColor: "#7C3AED",
     },
     {
@@ -61,9 +61,9 @@ export default function CampaignStats({ data }: { data: Props }) {
       value: `$${safeData.total_budget.toLocaleString()}`,
       icon: <MdBusinessCenter size={32} style={{ color: "#EC4899" }} />,
       lightBg: "#FDF2F8",
-      lightBorder: "#F9A8D4", // Slightly darker border
+      lightBorder: "#F9A8D4",
       darkBg: "#831843",
-      darkBorder: "#DB2777", // Darker border for dark mode
+      darkBorder: "#DB2777",
       textColor: "#DB2777",
     },
   ];

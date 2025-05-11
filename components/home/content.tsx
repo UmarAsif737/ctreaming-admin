@@ -1,37 +1,11 @@
-// components/home/content.tsx
 "use client";
 import React from "react";
-import dynamic from "next/dynamic";
-// import { TableWrapper } from "../table/table";
 import { TaskCountCard } from "./card-balance1";
-// import { CardBalance2 } from "./card-balance2";
-// import { CardBalance3 } from "./card-balance3";
-// import { CardAgents } from "./card-agents";
-// import { Link } from "@heroui/react";
-import NextLink from "next/link";
+
 import CampaignsByStatus from "./stats/campaigns-by-status";
 import CampaignMetrics from "./stats/campaign-metrics";
 import VerifiedAndUnVerifiedChart from "./stats/verified-unverified-chart";
 import TotalCountsChartByUserType from "./stats/users-count-chart";
-
-// Dynamically import charts
-// const Chart = dynamic(() => import("../charts/steam"), { ssr: false });
-// const PieChart = dynamic(
-//   () => import("../charts/pieChart").then((mod) => mod.RadialBarChart),
-//   { ssr: false }
-// );
-// const MixedChart = dynamic(
-//   () => import("../charts/mixedChart").then((mod) => mod.MixedChart),
-//   { ssr: false }
-// );
-// const TotalCountsChart = dynamic(
-//   () => import("../charts/total-counts-charts"),
-//   { ssr: false }
-// );
-// const RenewalRequestsChart = dynamic(
-//   () => import("../charts/renewal-request"),
-//   { ssr: false }
-// );
 
 export const Content = ({ stats }: { stats: any }) => (
   <div className="h-full lg:px-6">
