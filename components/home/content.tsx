@@ -9,8 +9,10 @@ import { TaskCountCard } from "./card-balance1";
 // import { CardAgents } from "./card-agents";
 // import { Link } from "@heroui/react";
 import NextLink from "next/link";
-import CampaignsByStatus from "./stats/users-by-type-info";
+import CampaignsByStatus from "./stats/campaigns-by-status";
 import CampaignMetrics from "./stats/campaign-metrics";
+import VerifiedAndUnVerifiedChart from "./stats/verified-unverified-chart";
+import TotalCountsChartByUserType from "./stats/users-count-chart";
 
 // Dynamically import charts
 // const Chart = dynamic(() => import("../charts/steam"), { ssr: false });
@@ -107,6 +109,27 @@ export const Content = ({ stats }: { stats: any }) => (
       </div>
 
       {/* Last Charts Part!! */}
+      <div className="flex justify-center gap-4 xl:gap-6 pt-3 px-4 lg:px-0 flex-wrap xl:flex-nowrap sm:pt-10 max-w-[90rem] mx-auto w-full">
+        <div className="mt-6 gap-6 flex flex-col w-full">
+          {/* Right Chart */}
+          <div className="h-full flex flex-col gap-2">
+            <h3 className="text-xl font-semibold">Users Count by Type</h3>
+            <div className="w-full bg-default-50 shadow-lg rounded-2xl p-6">
+              <TotalCountsChartByUserType data={[6, 9, 2, 1, 4]} />
+            </div>
+          </div>
+        </div>
+
+        {/* Left Section */}
+        <div className="mt-6 gap-2 flex flex-col xl:max-w-md w-full h-full">
+          <h3 className="text-xl font-semibold">
+            Verified & Non-Verified Users
+          </h3>
+          <div className="w-full bg-default-50 shadow-lg rounded-2xl p-6">
+            <VerifiedAndUnVerifiedChart verified={10} nonVerified={2} />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 );
