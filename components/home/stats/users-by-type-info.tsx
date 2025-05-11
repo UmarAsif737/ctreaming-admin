@@ -33,6 +33,7 @@ const cards = [
     darkBorder: "#10B981",
     textColor: "#059669",
   },
+  .
   {
     label: "Assigned Campaigns",
     value: safeData.total_campaigns,
