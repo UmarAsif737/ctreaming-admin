@@ -92,10 +92,18 @@ export const Content = ({ stats }: { stats: any }) => (
                 (campWithStatus: { _id: string; count: number }) =>
                   campWithStatus._id === "completed"
               )?.count || 0,
-            total: stats?.campaign_stats?.total_campaigns || 0,
           }}
         />
-        <CampaignMetrics />
+        <CampaignMetrics
+          data={{
+            total_campaigns: stats?.campaign_stats?.total_campaigns || 0,
+            avg_budget_per_campaign:
+              stats?.campaign_stats?.avg_budget_per_campaign || 0,
+            avg_campaigns_per_brand:
+              stats?.campaign_stats?.avg_campaigns_per_brand || 0,
+            total_budget: stats?.campaign_stats?.total_budget || 0,
+          }}
+        />
       </div>
     </div>
   </div>
