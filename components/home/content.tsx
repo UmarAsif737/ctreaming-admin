@@ -115,7 +115,31 @@ export const Content = ({ stats }: { stats: any }) => (
           <div className="h-full flex flex-col gap-2">
             <h3 className="text-xl font-semibold">Users Count by Type</h3>
             <div className="w-full bg-default-50 shadow-lg rounded-2xl p-6">
-              <TotalCountsChartByUserType data={[6, 9, 2, 1, 4]} />
+              <TotalCountsChartByUserType
+                data={[
+                  stats?.user_stats?.users_by_type?.find(
+                    (user: { count: number; _id: string }) =>
+                      user?._id === "brand"
+                  )?.count || 0,
+                  stats?.user_stats?.users_by_type?.find(
+                    (user: { count: number; _id: string }) =>
+                      user?._id === "creator"
+                  )?.count,
+                  stats?.user_stats?.users_by_type?.find(
+                    (user: { count: number; _id: string }) =>
+                      user?._id === "publisher"
+                  )?.count,
+                  stats?.user_stats?.users_by_type?.find(
+                    (user: { count: number; _id: string }) =>
+                      user?._id === "ctv"
+                  )?.count,
+
+                  stats?.user_stats?.users_by_type?.find(
+                    (user: { count: number; _id: string }) =>
+                      user?._id === "not set"
+                  )?.count,
+                ]}
+              />
             </div>
           </div>
         </div>
