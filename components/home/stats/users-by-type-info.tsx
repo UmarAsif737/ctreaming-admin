@@ -8,24 +8,24 @@ import {
 } from "react-icons/md";
 
 type Props = {
-  avg_campaigns_per_brand?: number;
-  total_campaigns?: number;
-  total_budget?: number;
+  active_campaigns?: number;
+  assigned_campaigns?: number;
+  completed_campaigns?: number;
 };
 
 export default function CampaignsByStatus({ data }: { data: Props }) {
   const { theme } = useTheme();
 
   const safeData = {
-    avg_campaigns_per_brand: data?.avg_campaigns_per_brand ?? 1.55,
-    total_campaigns: data?.total_campaigns ?? 62,
-    total_budget: data?.total_budget ?? 1180517,
+    active_campaigns: data?.active_campaigns ?? 0,
+    assigned_campaigns: data?.assigned_campaigns ?? 0,
+    completed_campaigns: data?.completed_campaigns ?? 0,
   };
 
 const cards = [
   {
     label: "Active Campaigns",
-    value: safeData.avg_campaigns_per_brand.toFixed(2),
+    value: safeData.active_campaigns.toLocaleString(),
     icon: <MdTrendingUp size={32} style={{ color: theme === "dark" ? "#6EE7B7" : "#059669" }} />,
     lightBg: "#ECFDF5",
     lightBorder: "#6EE7B7",
@@ -33,10 +33,10 @@ const cards = [
     darkBorder: "#10B981",
     textColor: "#059669",
   },
-  .
+  
   {
     label: "Assigned Campaigns",
-    value: safeData.total_campaigns,
+    value: safeData.assigned_campaigns,
     icon: <MdWorkOutline size={32} style={{ color: theme === "dark" ? "#FCD34D" : "#D97706" }} />,
     lightBg: "#FEF3C7",
     lightBorder: "#FCD34D",
@@ -46,7 +46,7 @@ const cards = [
   },
   {
     label: "Completed Campaigns",
-    value: `$${safeData.total_budget.toLocaleString()}`,
+    value: `${safeData.completed_campaigns.toLocaleString()}`,
     icon: <MdCheckCircleOutline size={32} style={{ color: theme === "dark" ? "#60A5FA" : "#2563EB" }} />,
     lightBg: "#EFF6FF",
     lightBorder: "#60A5FA",
