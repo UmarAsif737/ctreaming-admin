@@ -57,13 +57,17 @@ export async function getAllUsers({
   }
 }
 
-export async function deleteUser(id: string) {
+
+
+export async function deActivateUser(id: string) {
   try {
-    const response = await axiosInstance.delete(`/api/admin/users/${id}`);
+    const response = await axiosInstance.delete(
+      `/api/admin/users/${id}/deactivate`
+    );
     console.log("🚀 ~ response:", response.data);
     return { data: response.data.body };
   } catch (error: any) {
-    const errorMessage = error.response?.data?.error || "Delete user failed";
+    const errorMessage = error.response?.data?.error || "Deactivating user failed!";
     return { error: errorMessage };
   }
 }
