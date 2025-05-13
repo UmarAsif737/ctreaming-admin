@@ -33,3 +33,14 @@ export type Result = {
   password: string
   type: 'admin' | 'user'
 }
+
+export interface IUser {
+
+}
+
+export interface IMeta {
+  current_page: number
+  page_items: number
+  total_items: number
+  total_pages: number
+}
