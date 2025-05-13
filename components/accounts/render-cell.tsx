@@ -7,7 +7,6 @@ import Link from "next/link";
 import UserModal from "./user-modal";
 import { deleteUser } from "@/actions/user.actions";
 import { toast } from "sonner";
-import AssignPocModal from "./assign-poc-modal";
 
 interface Props {
   item: IUser;
@@ -17,18 +16,22 @@ interface Props {
   search?: string;
 }
 
-export const RenderCell = ({ item, columnKey,fetchFreshData=()=>{},isAssistedUsers,search }: Props) => {
+export const RenderCell = ({
+  item,
+  columnKey,
+  fetchFreshData = () => {},
+  isAssistedUsers,
+  search,
+}: Props) => {
   const cellValue = item[columnKey as keyof IUser];
-
-  const is_poc_assigned = columnKey ==='poc' ? item[columnKey as keyof IUser] : undefined;
 
   const handleDeleteUser = async () => {
     toast.promise(
-      deleteUser(item.id).then((result:any) => {
+      deleteUser(item?.id).then((result: any) => {
         if (result.error) {
           throw new Error(result.error);
         }
-        
+
         return result;
       }),
       {
@@ -48,23 +51,12 @@ export const RenderCell = ({ item, columnKey,fetchFreshData=()=>{},isAssistedUse
     case "drivers":
       return (
         <div className="text-center">
-          {Array.isArray(cellValue) ? cellValue.length : 0}
+          {Array.isArray(cellValue) ? cellValue?.length : 0}
         </div>
       );
 
-      case "poc":
-        return (<>{
-          is_poc_assigned === null ? <>
-             <Tooltip content="Assign Poc to user" color="primary">
-            <AssignPocModal
-             data={item}
-             fetchFreshData={fetchFreshData}
-             isAssistedUsers={isAssistedUsers}
-             search={search}
-            />
-          </Tooltip>
-          </> : <>{cellValue?.name}</>
-        }</>)
+    case "poc":
+      return <>{cellValue?.name}</>;
 
     case "createdAt":
       return (
