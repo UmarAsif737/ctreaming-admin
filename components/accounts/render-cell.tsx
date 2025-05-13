@@ -55,10 +55,27 @@ export const RenderCell = ({
     case "category":
       return (
         <div>
-          {String(cellValue) === "undefined" ? (
+          {String(cellValue) === undefined ? (
             <span className="italic text-[#727D73]">Not Selected</span>
           ) : (
             <>{String(cellValue)}</>
+          )}
+        </div>
+      );
+
+    case "is_active":
+      return (
+        <div>
+          {cellValue === undefined ? (
+            <span className="text-[#727D73]">In-active</span>
+          ) : (
+            <>{String(cellValue) === 'true' ? <>
+            <span className="text-[#079455]">Active</span>
+            
+            </> : <>
+            <span className="text-[#727D73]">In-active</span>
+            
+            </>}</>
           )}
         </div>
       );

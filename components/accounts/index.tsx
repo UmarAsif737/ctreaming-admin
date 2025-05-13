@@ -45,8 +45,12 @@ export const Accounts = ({
     { name: "CITY", uid: "city" },
     { name: "IS VERIFIED", uid: "is_verified" },
 
+    { name: "STATUS", uid: "is_active" },
+
+
     { name: "CREATED AT", uid: "createdAt" },
     { name: "ACTIONS", uid: "actions" },
+
   ];
 
   return (

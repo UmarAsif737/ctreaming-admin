@@ -48,6 +48,7 @@ export interface IUser {
   last_online: string;
   legal_requirements: string[];
   is_verified: boolean;
+  is_active: boolean;
   createdAt: string | Date;
   updatedAt: string | Date;
 }
