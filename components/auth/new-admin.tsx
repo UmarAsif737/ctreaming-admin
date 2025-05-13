@@ -8,7 +8,7 @@ import Image from "next/image";
 import Button from "../shared/button";
 import SectionHeadings from "../shared/heading";
 import * as Yup from "yup";
-import { createNewAdmin } from "@/actions/user.action";
+import { createNewAdmin } from "@/actions/user.actions";
 import { toast } from "sonner";
 import { IMAGES } from "@/public";
 

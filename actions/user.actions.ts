@@ -18,3 +18,19 @@ export async function signOut(): Promise<Result> {
     return { error: errorMessage };
   }
 }
+
+export async function createNewAdmin(data: IAdmin): Promise<Result<IAdmin>> {
+  console.log("🚀 ~ createNewAdmin ~ data:", data);
+  try {
+    const response = await axiosInstance.post("/api/admin/users/create", data);
+    console.log("API response:", response);
+
+    return { data: response.data.body.new_admin_user };
+  } catch (error: any) {
+    console.log("🚀 ~ createNewAdmin ~ error:", error);
+    console.log("🚀 ~ createNewAdmin ~ error response:", error.response?.data);
+
+    const errorMessage = error.response?.data?.error || "Create user failed";
+    return { error: errorMessage };
+  }
+}
