@@ -33,3 +33,32 @@ export async function createNewAdmin(data: IAdmin): Promise<Result> {
     return { error: errorMessage };
   }
 }
+
+export async function getAllUsers({
+  query = "",
+  page = 1,
+  limit = 10,
+  search = "",
+  is_document_assistance_enabled = false,
+}: {
+  query?: string;
+  page?: number;
+  limit?: number;
+  search?: string;
+  is_document_assistance_enabled?: boolean;
+}): Promise<Result<IUser[]>> {
+  try {
+    const params: Record<string, any> = { query, page, limit, search };
+
+    if (is_document_assistance_enabled) {
+      params.is_document_assistance_enabled = is_document_assistance_enabled;
+    }
+
+    const response = await axiosInstance.get("/api/admin/users", { params });
+
+    return { data: response.data.body, meta: response.data.meta };
+  } catch (error: any) {
+    const errorMessage = error.response?.data?.error || "Fetch users failed";
+    return { error: errorMessage };
+  }
+}
