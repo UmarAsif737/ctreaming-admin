@@ -1,11 +1,8 @@
 import { Tooltip, Chip } from "@heroui/react";
 import React from "react";
-import { DeleteIcon } from "../icons/table/delete-icon";
 import { EyeIcon } from "../icons/table/eye-icon";
 import { IUser } from "@/types/index.types";
 import Link from "next/link";
-import UserModal from "./user-modal";
-import { deleteUser } from "@/actions/user.actions";
 import { toast } from "sonner";
 import { FaCheckCircle, FaPowerOff } from "react-icons/fa";
 import ActivateDeActivateModal from "./active-deactive-user";
@@ -31,21 +28,36 @@ export const RenderCell = ({
   });
   const cellValue = item[columnKey as keyof IUser];
 
-  const handleActiveDeActiveUser = async () => {
-    toast.promise(
-      deleteUser(item?._id).then((result: any) => {
-        if (result.error) {
-          throw new Error(result.error);
-        }
+  const handleActivateUser = async () => {
+    // toast.promise(
+    //   deleteUser(item?._id).then((result: any) => {
+    //     if (result.error) {
+    //       throw new Error(result.error);
+    //     }
+    //     return result;
+    //   }),
+    //   {
+    //     loading: "Deleting user...",
+    //     success: "User deleted successfully!",
+    //     error: "Error deleting user.",
+    //   }
+    // );
+  };
 
-        return result;
-      }),
-      {
-        loading: "Deleting user...",
-        success: "User deleted successfully!",
-        error: "Error deleting user.",
-      }
-    );
+  const handleDeActivateUser = async () => {
+    // toast.promise(
+    //   deleteUser(item?._id).then((result: any) => {
+    //     if (result.error) {
+    //       throw new Error(result.error);
+    //     }
+    //     return result;
+    //   }),
+    //   {
+    //     loading: "Deleting user...",
+    //     success: "User deleted successfully!",
+    //     error: "Error deleting user.",
+    //   }
+    // );
   };
 
   switch (columnKey) {
