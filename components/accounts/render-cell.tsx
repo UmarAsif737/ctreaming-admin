@@ -7,6 +7,8 @@ import Link from "next/link";
 import UserModal from "./user-modal";
 import { deleteUser } from "@/actions/user.actions";
 import { toast } from "sonner";
+import { FaCheckCircle, FaPowerOff } from "react-icons/fa";
+import ActivateDeActivateModal from "./active-deactive-user";
 
 interface Props {
   item: IUser;
@@ -29,7 +31,7 @@ export const RenderCell = ({
   });
   const cellValue = item[columnKey as keyof IUser];
 
-  const handleDeleteUser = async () => {
+  const handleActiveDeActiveUser = async () => {
     toast.promise(
       deleteUser(item?._id).then((result: any) => {
         if (result.error) {
@@ -69,13 +71,17 @@ export const RenderCell = ({
           {cellValue === undefined ? (
             <span className="text-[#727D73]">In-active</span>
           ) : (
-            <>{String(cellValue) === 'true' ? <>
-            <span className="text-[#079455]">Active</span>
-            
-            </> : <>
-            <span className="text-[#727D73]">In-active</span>
-            
-            </>}</>
+            <>
+              {String(cellValue) === "true" ? (
+                <>
+                  <span className="text-[#079455]">Active</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-[#727D73]">In-active</span>
+                </>
+              )}
+            </>
           )}
         </div>
       );
@@ -144,13 +150,44 @@ export const RenderCell = ({
               <EyeIcon size={20} fill="#979797" />
             </Link>
           </Tooltip>
-          <Tooltip content="Delete user" color="danger">
-            <UserModal
-              button={<DeleteIcon size={20} fill="#FF0080" />}
-              mode="Delete"
+
+          <Tooltip
+            content={item?.is_active ? "Deactivate user" : "Activate user"}
+          >
+            <ActivateDeActivateModal
+              button={
+                item?.is_active ? (
+                  <FaPowerOff
+                    size={16}
+                    className="text-[#FFA500] hover:text-[#FF8C00]"
+                  />
+                ) : (
+                  <FaCheckCircle
+                    size={16}
+                    className="text-[#28A745] hover:text-[#218838]"
+                  />
+                )
+              }
+              mode={item?.is_active ? "De Activate" : "Activate"}
               data={item}
-              onConfirm={handleDeleteUser}
+              onConfirm={handleActiveDeActiveUser}
             />
+            {/* <button
+              onClick={() => {}}
+              className="p-1 rounded-md hover:bg-[#f5f5f5] transition-colors"
+            >
+              {item?.is_active ? (
+                <FaPowerOff
+                  size={16}
+                  className="text-[#FFA500] hover:text-[#FF8C00]"
+                />
+              ) : (
+                <FaCheckCircle
+                  size={16}
+                  className="text-[#28A745] hover:text-[#218838]"
+                />
+              )}
+            </button> */}
           </Tooltip>
         </div>
       );
