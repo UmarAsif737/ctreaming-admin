@@ -1,13 +1,12 @@
 "use server";
 
 import axiosInstance from "@/config/axios";
-import { Result } from "@/types/index.types";
+import { IAdmin, Result } from "@/types/index.types";
 
 export async function signOut(): Promise<Result> {
   try {
     await axiosInstance.post("/api/admin/auth/sign-out");
 
-    // Clear the token from local storage
     if (typeof window !== "undefined") {
       window.localStorage.removeItem("token");
     }
@@ -19,7 +18,7 @@ export async function signOut(): Promise<Result> {
   }
 }
 
-export async function createNewAdmin(data: IAdmin): Promise<Result<IAdmin>> {
+export async function createNewAdmin(data: IAdmin): Promise<Result> {
   console.log("🚀 ~ createNewAdmin ~ data:", data);
   try {
     const response = await axiosInstance.post("/api/admin/users/create", data);

@@ -26,3 +26,11 @@ export type Result = {
     full_name: string;
   };
   
+
+  export interface IAdmin {
+  username: string
+  name: string
+  email: string
+  password: string
+  type: 'admin' | 'user'
+}
