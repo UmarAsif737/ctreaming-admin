@@ -42,3 +42,8 @@ export interface IMeta {
   total_items: number;
   total_pages: number;
 }
+
+export interface IColumn {
+  name: string
+  uid: string
+}
