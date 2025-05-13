@@ -21,7 +21,7 @@ export async function signOut(): Promise<Result> {
 export async function createNewAdmin(data: IAdmin): Promise<Result> {
   console.log("🚀 ~ createNewAdmin ~ data:", data);
   try {
-    const response = await axiosInstance.post("/api/admin/users/create", data);
+    const response = await axiosInstance.post("/api/admin/admin-users", data);
     console.log("API response:", response);
 
     return { data: response.data.body.new_admin_user };

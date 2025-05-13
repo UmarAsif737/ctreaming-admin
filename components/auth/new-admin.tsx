@@ -1,5 +1,4 @@
-
-"use client"; // Add this line at the very top
+"use client";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useState } from "react";
@@ -129,7 +128,7 @@ function NewAdmin() {
                     className="text-red-600 text-sm mt-1"
                   />
 
-                  <Button type="submit" className="w-full mt-5" variant="black">
+                  <Button type="submit" className="w-full mt-5" variant="primary">
                     {loading ? "Registering..." : "Register"}
                   </Button>
                 </div>
