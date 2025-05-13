@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import React from "react";
 import Image from "next/image";
 import Button from "../shared/button";
-import SectionHeadings from "../shared/Heading";
+import SectionHeadings from "../shared/heading";
 import { IMAGES } from "@/public";
 
 function LoginAccount({ searchParams }: { searchParams: { error?: string } }) {

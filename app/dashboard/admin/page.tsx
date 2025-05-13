@@ -1,7 +1,10 @@
-import React from "react";
+import NewAdmin from '@/components/auth/new-admin'
+import React from 'react'
 
-type Props = {};
-
-export default function page({}: Props) {
-  return <div>Admin</div>;
+function page() {
+    return (
+        <NewAdmin />
+    )
 }
+
+export default page

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   description: 'Will add description soon',
   icons: {
-    icon: '/public/favicon.ico',
+    icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
   // openGraph: {
