@@ -1,3 +1,4 @@
+"use client";
 import { Tooltip, Chip } from "@heroui/react";
 import React, { useState } from "react";
 import { EyeIcon } from "../icons/table/eye-icon";
@@ -7,7 +8,6 @@ import { toast } from "sonner";
 import { FaCheckCircle, FaPowerOff } from "react-icons/fa";
 import ActivateDeActivateModal from "./active-deactive-user";
 import { activateUser, deActivateUser } from "@/actions/user.actions";
-import PreviewUserModal from "./view-user-modal";
 
 interface Props {
   item: IUser;
@@ -15,6 +15,8 @@ interface Props {
   fetchFreshData?: any;
   isAssistedUsers?: boolean;
   search?: string;
+  setSelectedItem?: any;
+  setIsModalOpen?: any;
 }
 
 export const RenderCell = ({
@@ -23,15 +25,14 @@ export const RenderCell = ({
   fetchFreshData = () => {},
   isAssistedUsers,
   search,
+  setSelectedItem,
+  setIsModalOpen,
 }: Props) => {
   console.log({
     item,
     columnKey,
   });
   const cellValue = item[columnKey as keyof IUser];
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleActivateUser = async () => {
     toast.promise(
@@ -56,7 +57,7 @@ export const RenderCell = ({
         if (result.error) {
           throw new Error(result.error);
         }
-        fetchFreshData();
+        fetchFreshData({ query: "", page: 1, limit: 10, search: "" });
 
         return result;
       }),
@@ -165,19 +166,14 @@ export const RenderCell = ({
     case "actions":
       return (
         <>
-          {isModalOpen && (
-            <PreviewUserModal
-              onClose={() => setIsModalOpen(false)}
-              user={item}
-              open={isModalOpen}
-            />
-          )}
           <div className="flex items-center gap-4">
             <Tooltip content="Details">
               <button
                 onClick={() => {
+                  setSelectedItem(item);
                   setIsModalOpen(true);
                 }}
+                type="button"
               >
                 <EyeIcon size={20} fill="#979797" />
               </button>

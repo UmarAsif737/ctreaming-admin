@@ -18,7 +18,7 @@ export const Modal = ({ isOpen, onClose, children, className }: ModalProps) => {
       onClick={onClose}
     >
       <div
-        className={`bg-white rounded-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col no-scrollbar ${
+        className={`bg-[#fff] rounded-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col no-scrollbar ${
           className ?? ""
         }`}
         onClick={(e) => e.stopPropagation()}

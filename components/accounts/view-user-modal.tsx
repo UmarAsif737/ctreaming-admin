@@ -114,7 +114,7 @@ function PreviewUserModal({ user, onClose, open = false }: Props) {
           <div className="flex flex-col gap-2">
             <p className="text-[#A7B5BE] text-[0.87rem]">Legal Requirements</p>
             <div className="flex flex-col gap-1">
-              {user.legal_requirements.map((link: string, index: number) => (
+              {user?.legal_requirements?.map((link: string, index: number) => (
                 <div
                   key={index}
                   className="flex items-center gap-2 overflow-hidden"
