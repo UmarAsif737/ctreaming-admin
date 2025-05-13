@@ -59,7 +59,7 @@ export async function getAllUsers({
 
 export async function activateUser(id: string) {
   try {
-    const response = await axiosInstance.delete(`/api/admin/users/${id}/activate`);
+    const response = await axiosInstance.patch(`/api/admin/users/${id}/activate`);
     console.log("🚀 ~ response:", response.data);
     return { data: response.data.body };
   } catch (error: any) {
@@ -71,7 +71,7 @@ export async function activateUser(id: string) {
 
 export async function deActivateUser(id: string) {
   try {
-    const response = await axiosInstance.delete(
+    const response = await axiosInstance.patch(
       `/api/admin/users/${id}/deactivate`
     );
     console.log("🚀 ~ response:", response.data);
