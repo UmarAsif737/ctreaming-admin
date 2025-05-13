@@ -23,7 +23,10 @@ export const RenderCell = ({
   isAssistedUsers,
   search,
 }: Props) => {
-  const cellValue = item[columnKey as keyof IUser];
+    console.log({
+        item,columnKey
+    })
+  const cellValue = item[columnKey as keyof any];
 
   const handleDeleteUser = async () => {
     toast.promise(
@@ -44,7 +47,7 @@ export const RenderCell = ({
 
   switch (columnKey) {
     case "email":
-    case "full_name":
+    case "name":
       return <div>{String(cellValue)}</div>;
 
     case "vehicles":

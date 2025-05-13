@@ -45,6 +45,7 @@ export const TableWrapper = <T extends DataItem>({
   isAssistedUsers,
   search = "",
 }: TableWrapperProps<T>) => {
+    console.log({data2:data,columns})
   const { updateSearchParams } = useUpdateSearchParams();
 
   // Provide default values if meta is undefined
@@ -79,7 +80,7 @@ export const TableWrapper = <T extends DataItem>({
         </TableHeader>
         <TableBody items={data}>
           {(item) => (
-            <TableRow key={item.id}>
+            <TableRow key={item._id}>
               {(columnKey) => (
                 <TableCell>
                   {RenderCell({

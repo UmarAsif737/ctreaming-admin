@@ -33,6 +33,7 @@ export const Accounts = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
+  console.log({data})
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value;
     setSearchTerm(term);
@@ -41,13 +42,13 @@ export const Accounts = ({
 
   const columns = [
     { name: "Email", uid: "email" },
-    { name: "FULL NAME", uid: "name" },
-    { name: "VEHICLES", uid: "vehicles" },
-    { name: "DRIVERS", uid: "drivers" },
-    { name: "ASSIGNED POC", uid: "poc" },
-    { name: "CREATED AT", uid: "createdAt" },
-    { name: "TYPE", uid: "type" },
-    { name: "ACTIONS", uid: "actions" },
+    // { name: "FULL NAME", uid: "name" },
+    // { name: "VEHICLES", uid: "vehicles" },
+    // { name: "DRIVERS", uid: "drivers" },
+    // { name: "ASSIGNED POC", uid: "poc" },
+    // { name: "CREATED AT", uid: "createdAt" },
+    // { name: "TYPE", uid: "type" },
+    // { name: "ACTIONS", uid: "actions" },
   ];
 
   return (
