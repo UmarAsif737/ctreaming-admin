@@ -1,8 +1,4 @@
-import {
-  capitalize,
-  decodeHtmlEntities,
-  FormatBudgetValue,
-} from "@/helper/utils";
+import { decodeHtmlEntities } from "@/helpers/utils";
 import moment from "moment";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
@@ -73,9 +69,7 @@ function PreviewUserModal({ user, onClose, open = false }: Props) {
         </div>
 
         <div className="flex flex-col gap-1">
-          <p className="text-[#A7B5BE] text-[0.87rem]">
-            Available Impressions
-          </p>
+          <p className="text-[#A7B5BE] text-[0.87rem]">Available Impressions</p>
           <p className="text-black text-[0.95rem]">
             {user?.available_impressions?.toLocaleString()}
           </p>
@@ -125,10 +119,7 @@ function PreviewUserModal({ user, onClose, open = false }: Props) {
                   key={index}
                   className="flex items-center gap-2 overflow-hidden"
                 >
-                  <FaLink
-                    size={12}
-                    className="text-[#A7B5BE] flex-shrink-0"
-                  />
+                  <FaLink size={12} className="text-[#A7B5BE] flex-shrink-0" />
                   <Link
                     href={decodeHtmlEntities(link)}
                     target="_blank"
@@ -175,4 +166,4 @@ function PreviewUserModal({ user, onClose, open = false }: Props) {
   );
 }
 
-export default PreviewUserModal
+export default PreviewUserModal;

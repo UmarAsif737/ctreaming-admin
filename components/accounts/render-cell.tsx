@@ -1,5 +1,5 @@
 import { Tooltip, Chip } from "@heroui/react";
-import React from "react";
+import React, { useState } from "react";
 import { EyeIcon } from "../icons/table/eye-icon";
 import { IUser } from "@/types/index.types";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { FaCheckCircle, FaPowerOff } from "react-icons/fa";
 import ActivateDeActivateModal from "./active-deactive-user";
 import { activateUser, deActivateUser } from "@/actions/user.actions";
+import PreviewUserModal from "./view-user-modal";
 
 interface Props {
   item: IUser;
@@ -28,6 +29,9 @@ export const RenderCell = ({
     columnKey,
   });
   const cellValue = item[columnKey as keyof IUser];
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleActivateUser = async () => {
     toast.promise(
@@ -160,37 +164,49 @@ export const RenderCell = ({
 
     case "actions":
       return (
-        <div className="flex items-center gap-4">
-          <Tooltip content="Details">
-            <Link href={`/dashboard/accounts/${item?._id}`}>
-              <EyeIcon size={20} fill="#979797" />
-            </Link>
-          </Tooltip>
-
-          <Tooltip
-            content={item?.is_active ? "Deactivate user" : "Activate user"}
-          >
-            <ActivateDeActivateModal
-              button={
-                item?.is_active ? (
-                  <FaPowerOff
-                    size={16}
-                    className="text-[#FFA500] hover:text-[#FF8C00]"
-                  />
-                ) : (
-                  <FaCheckCircle
-                    size={16}
-                    className="text-[#28A745] hover:text-[#218838]"
-                  />
-                )
-              }
-              mode={item?.is_active ? "De Activate" : "Activate"}
-              data={item}
-              onConfirm={
-                item?.is_active ? handleDeActivateUser : handleActivateUser
-              }
+        <>
+          {isModalOpen && (
+            <PreviewUserModal
+              onClose={() => setIsModalOpen(false)}
+              user={item}
+              open={isModalOpen}
             />
-            {/* <button
+          )}
+          <div className="flex items-center gap-4">
+            <Tooltip content="Details">
+              <button
+                onClick={() => {
+                  setIsModalOpen(true);
+                }}
+              >
+                <EyeIcon size={20} fill="#979797" />
+              </button>
+            </Tooltip>
+
+            <Tooltip
+              content={item?.is_active ? "Deactivate user" : "Activate user"}
+            >
+              <ActivateDeActivateModal
+                button={
+                  item?.is_active ? (
+                    <FaPowerOff
+                      size={16}
+                      className="text-[#FFA500] hover:text-[#FF8C00]"
+                    />
+                  ) : (
+                    <FaCheckCircle
+                      size={16}
+                      className="text-[#28A745] hover:text-[#218838]"
+                    />
+                  )
+                }
+                mode={item?.is_active ? "De Activate" : "Activate"}
+                data={item}
+                onConfirm={
+                  item?.is_active ? handleDeActivateUser : handleActivateUser
+                }
+              />
+              {/* <button
               onClick={() => {}}
               className="p-1 rounded-md hover:bg-[#f5f5f5] transition-colors"
             >
@@ -206,8 +222,9 @@ export const RenderCell = ({
                 />
               )}
             </button> */}
-          </Tooltip>
-        </div>
+            </Tooltip>
+          </div>
+        </>
       );
 
     default:
