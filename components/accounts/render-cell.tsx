@@ -23,9 +23,10 @@ export const RenderCell = ({
   isAssistedUsers,
   search,
 }: Props) => {
-    console.log({
-        item,columnKey
-    })
+  console.log({
+    item,
+    columnKey,
+  });
   const cellValue = item[columnKey as keyof any];
 
   const handleDeleteUser = async () => {
@@ -48,18 +49,41 @@ export const RenderCell = ({
   switch (columnKey) {
     case "email":
     case "name":
+    case "is_verified":
       return <div>{String(cellValue)}</div>;
 
-    case "vehicles":
-    case "drivers":
+    case "category":
       return (
-        <div className="text-center">
-          {Array.isArray(cellValue) ? cellValue?.length : 0}
+        <div>
+          {String(cellValue) === "undefined" ? (
+            <span className="italic text-[#727D73]">Not Selected</span>
+          ) : (
+            <>{String(cellValue)}</>
+          )}
         </div>
       );
 
-    case "poc":
-      return <>{cellValue?.name}</>;
+    case "city":
+      return (
+        <div>
+          {String(cellValue) === "undefined" ? (
+            <span className="italic text-[#727D73]">Not Selected</span>
+          ) : (
+            <>{String(cellValue)}</>
+          )}
+        </div>
+      );
+
+    case "type":
+      return (
+        <div>
+          {String(cellValue) === "not set" ? (
+            <span className="italic text-[#727D73]">Not Selected</span>
+          ) : (
+            <>{String(cellValue)}</>
+          )}
+        </div>
+      );
 
     case "createdAt":
       return (
