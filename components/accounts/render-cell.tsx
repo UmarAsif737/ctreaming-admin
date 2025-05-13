@@ -182,7 +182,9 @@ export const RenderCell = ({
               }
               mode={item?.is_active ? "De Activate" : "Activate"}
               data={item}
-              onConfirm={handleActiveDeActiveUser}
+              onConfirm={
+                item?.is_active ? handleDeActivateUser : handleActivateUser
+              }
             />
             {/* <button
               onClick={() => {}}
