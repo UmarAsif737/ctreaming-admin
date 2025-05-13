@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Button, Input } from "@heroui/react";
 import { TableWrapper } from "@/components/table/table";
-import { IMeta, IUser } from "@/helpers/types";
+import { IMeta, IUser } from "@/types/index.types";
 import { RenderCell } from "./render-cell";
 import { Loader2 } from "lucide-react";
 
