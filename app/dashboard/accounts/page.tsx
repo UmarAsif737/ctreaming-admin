@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Accounts } from "@/components/accounts";
-import { getAllUsers } from "@/actions/user.action";
+import { getAllUsers } from "@/actions/user.actions";
 import Error from "@/components/error";
 import { IMeta, IUser } from "@/types/index.types";
 
