@@ -21,8 +21,8 @@ type DataItem = Record<string, any>;
 type RenderCellFunction<T> = (params: {
   item: T;
   columnKey: string | React.Key;
-  fetchFreshData:any;
-  isAssistedUsers?:boolean;
+  fetchFreshData: any;
+  isAssistedUsers?: boolean;
   search?: string;
 }) => React.ReactNode;
 
@@ -32,7 +32,7 @@ interface TableWrapperProps<T> {
   RenderCell: RenderCellFunction<T>;
   meta?: IMeta; // Made meta optional
   fetchFreshData?: () => void;
-  isAssistedUsers?:boolean
+  isAssistedUsers?: boolean;
   search?: string;
 }
 
@@ -41,9 +41,9 @@ export const TableWrapper = <T extends DataItem>({
   columns,
   meta,
   RenderCell,
-  fetchFreshData=()=>{},
+  fetchFreshData = () => {},
   isAssistedUsers,
-  search=""
+  search = "",
 }: TableWrapperProps<T>) => {
   const { updateSearchParams } = useUpdateSearchParams();
 
@@ -81,7 +81,15 @@ export const TableWrapper = <T extends DataItem>({
           {(item) => (
             <TableRow key={item.id}>
               {(columnKey) => (
-                <TableCell>{RenderCell({ item, columnKey, fetchFreshData,isAssistedUsers,search})}</TableCell>
+                <TableCell>
+                  {RenderCell({
+                    item,
+                    columnKey,
+                    fetchFreshData,
+                    isAssistedUsers,
+                    search,
+                  })}
+                </TableCell>
               )}
             </TableRow>
           )}
