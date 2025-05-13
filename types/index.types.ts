@@ -10,37 +10,35 @@
 // };
 
 export type Result = {
-    data?: any;
-    error?: string;
-    message?: string;
-  };
-  
-  export type LoginFormType = {
-    email: string;
-    password: string;
-  };
-  export type SignUpFormType = {
-    email: string;
-    password: string;
-    full_name: string;
-  };
-  
+  data?: any;
+  error?: string;
+  message?: string;
+  meta?: IMeta;
+};
 
-  export interface IAdmin {
-  username: string
-  name: string
-  email: string
-  password: string
-  type: 'admin' | 'user'
+export type LoginFormType = {
+  email: string;
+  password: string;
+};
+export type SignUpFormType = {
+  email: string;
+  password: string;
+  full_name: string;
+};
+
+export interface IAdmin {
+  username: string;
+  name: string;
+  email: string;
+  password: string;
+  type: "admin" | "user";
 }
 
-export interface IUser {
-
-}
+export interface IUser {}
 
 export interface IMeta {
-  current_page: number
-  page_items: number
-  total_items: number
-  total_pages: number
+  current_page: number;
+  page_items: number;
+  total_items: number;
+  total_pages: number;
 }

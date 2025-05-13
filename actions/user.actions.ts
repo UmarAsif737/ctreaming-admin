@@ -1,7 +1,7 @@
 "use server";
 
 import axiosInstance from "@/config/axios";
-import { IAdmin, Result } from "@/types/index.types";
+import { IAdmin, IUser, Result } from "@/types/index.types";
 
 export async function signOut(): Promise<Result> {
   try {
@@ -46,7 +46,7 @@ export async function getAllUsers({
   limit?: number;
   search?: string;
   is_document_assistance_enabled?: boolean;
-}): Promise<Result<IUser[]>> {
+}): Promise<Result> {
   try {
     const params: Record<string, any> = { query, page, limit, search };
 
