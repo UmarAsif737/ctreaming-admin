@@ -11,7 +11,7 @@ import { activateUser, deActivateUser } from "@/actions/user.actions";
 interface Props {
   item: IUser;
   columnKey: string | React.Key;
-  fetchFreshData?: () => void;
+  fetchFreshData?: any;
   isAssistedUsers?: boolean;
   search?: string;
 }
@@ -35,12 +35,12 @@ export const RenderCell = ({
         if (result.error) {
           throw new Error(result.error);
         }
-        fetchFreshData();
+        fetchFreshData({ query: "", page: 1, limit: 10, search: "" });
         return result;
       }),
       {
         loading: "Activating user...",
-        success: "User Activation successfully!",
+        success: "User Activated successfully!",
         error: "Error Activating user.",
       }
     );
@@ -58,7 +58,7 @@ export const RenderCell = ({
       }),
       {
         loading: "Deactivating user...",
-        success: "User Deactivation successfully!",
+        success: "User Deactivated successfully!",
         error: "Error Deactivating user.",
       }
     );
