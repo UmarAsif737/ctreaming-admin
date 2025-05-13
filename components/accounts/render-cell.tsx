@@ -2,10 +2,10 @@ import { Tooltip, Chip } from "@heroui/react";
 import React from "react";
 import { DeleteIcon } from "../icons/table/delete-icon";
 import { EyeIcon } from "../icons/table/eye-icon";
-import { IUser } from "@/helpers/types";
+import { IUser } from "@/types/index.types";
 import Link from "next/link";
 import UserModal from "./user-modal";
-import { deleteUser } from "@/actions/user.action";
+import { deleteUser } from "@/actions/user.actions";
 import { toast } from "sonner";
 import AssignPocModal from "./assign-poc-modal";
 
@@ -24,7 +24,7 @@ export const RenderCell = ({ item, columnKey,fetchFreshData=()=>{},isAssistedUse
 
   const handleDeleteUser = async () => {
     toast.promise(
-      deleteUser(item.id).then((result) => {
+      deleteUser(item.id).then((result:any) => {
         if (result.error) {
           throw new Error(result.error);
         }

@@ -62,3 +62,14 @@ export async function getAllUsers({
     return { error: errorMessage };
   }
 }
+
+export async function deleteUser(id: string) {
+  try {
+    const response = await axiosInstance.delete(`/api/admin/users/${id}`);
+    console.log("🚀 ~ response:", response.data);
+    return { data: response.data.body };
+  } catch (error: any) {
+    const errorMessage = error.response?.data?.error || "Delete user failed";
+    return { error: errorMessage };
+  }
+}
