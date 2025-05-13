@@ -57,14 +57,9 @@ export const Accounts = ({
     <div className="my-10 px-4 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
       <div className="flex justify-between flex-wrap gap-4 items-center">
         <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
-          <h3 className="text-xl font-semibold">
-            {isAssistedUsers ? "Users with Document Assistance" : "All Users"}
-          </h3>
+          <h3 className="text-xl font-semibold">All Users</h3>
         </div>
         <div className="flex gap-x-4">
-          <Button variant="solid" color="primary" onPress={onToggleUsers}>
-            {isAssistedUsers ? "View All Users" : "View Assisted Users"}
-          </Button>
           <div className="flex flex-wrap gap-4 items-center mb-4">
             <Input
               placeholder="Search by email..."

@@ -123,7 +123,7 @@ export const RenderCell = ({
       return (
         <div className="flex items-center gap-4">
           <Tooltip content="Details">
-            <Link href={`/dashboard/accounts/${item.id}`}>
+            <Link href={`/dashboard/accounts/${item?._id}`}>
               <EyeIcon size={20} fill="#979797" />
             </Link>
           </Tooltip>

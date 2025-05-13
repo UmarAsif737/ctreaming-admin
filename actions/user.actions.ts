@@ -39,20 +39,14 @@ export async function getAllUsers({
   page = 1,
   limit = 10,
   search = "",
-  is_document_assistance_enabled = false,
 }: {
   query?: string;
   page?: number;
   limit?: number;
   search?: string;
-  is_document_assistance_enabled?: boolean;
 }): Promise<Result> {
   try {
-    const params: Record<string, any> = { query, page, limit, search };
-
-    if (is_document_assistance_enabled) {
-      params.is_document_assistance_enabled = is_document_assistance_enabled;
-    }
+    const params: Record<string, any> = { query: search, page, limit, search };
 
     const response = await axiosInstance.get("/api/admin/users", { params });
 
