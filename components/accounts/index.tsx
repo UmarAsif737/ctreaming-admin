@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button, Input } from "@heroui/react";
+import { Input } from "@heroui/react";
 import { TableWrapper } from "@/components/table/table";
 import { IMeta, IUser } from "@/types/index.types";
 import { RenderCell } from "./render-cell";
@@ -11,8 +11,6 @@ export const Accounts = ({
   data,
   meta,
   loading,
-  isAssistedUsers,
-  onToggleUsers,
   onSearch,
   searchTerm: search,
   fetchFreshData = (params: {
@@ -25,8 +23,6 @@ export const Accounts = ({
   data: IUser[];
   meta: IMeta;
   loading: boolean;
-  isAssistedUsers: boolean;
-  onToggleUsers: () => void;
   onSearch: (term: string) => void;
   fetchFreshData?: any;
   searchTerm: string;
@@ -84,7 +80,6 @@ export const Accounts = ({
             data={data}
             columns={columns}
             fetchFreshData={fetchFreshData}
-            isAssistedUsers={isAssistedUsers}
             search={search}
           />
         )}

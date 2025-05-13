@@ -20,6 +20,7 @@ export type LoginFormType = {
   email: string;
   password: string;
 };
+
 export type SignUpFormType = {
   email: string;
   password: string;
@@ -34,7 +35,22 @@ export interface IAdmin {
   type: "admin" | "user";
 }
 
-export interface IUser {}
+export interface IUser {
+  _id: string;
+  name: string;
+  email: string;
+  city: string;
+  type: "publisher" | "advertiser" | string;
+  unique_audience: number;
+  available_impressions: number;
+  minimum_budget: number;
+  financial_total: number;
+  last_online: string;
+  legal_requirements: string[];
+  is_verified: boolean;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+}
 
 export interface IMeta {
   current_page: number;
@@ -44,6 +60,6 @@ export interface IMeta {
 }
 
 export interface IColumn {
-  name: string
-  uid: string
+  name: string;
+  uid: string;
 }

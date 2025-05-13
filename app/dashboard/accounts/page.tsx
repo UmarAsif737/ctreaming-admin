@@ -21,7 +21,6 @@ const AccountsPage = ({
   const [data, setData] = useState<IUser[]>([]);
   const [meta, setMeta] = useState<IMeta>(defaultMeta);
   const [loading, setLoading] = useState(true);
-  const [isAssistedUsers, setIsAssistedUsers] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
   const fetchUsers = async (params: {
@@ -29,7 +28,6 @@ const AccountsPage = ({
     limit?: number;
     query?: string;
     search?: string;
-    is_document_assistance_enabled?: boolean;
   }) => {
     setLoading(true);
     const {
@@ -52,13 +50,8 @@ const AccountsPage = ({
       page: searchParams.page,
       limit: searchParams.limit,
       search: searchTerm || "",
-      is_document_assistance_enabled: isAssistedUsers,
     });
-  }, [searchParams.page, searchParams.limit, searchTerm, isAssistedUsers]);
-
-  const handleToggleUsers = () => {
-    setIsAssistedUsers((prev) => !prev);
-  };
+  }, [searchParams.page, searchParams.limit, searchTerm]);
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
@@ -71,8 +64,6 @@ const AccountsPage = ({
       data={data}
       meta={meta}
       loading={loading}
-      isAssistedUsers={isAssistedUsers}
-      onToggleUsers={handleToggleUsers}
       onSearch={handleSearch}
       fetchFreshData={fetchUsers}
       searchTerm={searchTerm}

@@ -27,11 +27,11 @@ export const RenderCell = ({
     item,
     columnKey,
   });
-  const cellValue = item[columnKey as keyof any];
+  const cellValue = item[columnKey as keyof IUser];
 
   const handleDeleteUser = async () => {
     toast.promise(
-      deleteUser(item?.id).then((result: any) => {
+      deleteUser(item?._id).then((result: any) => {
         if (result.error) {
           throw new Error(result.error);
         }
