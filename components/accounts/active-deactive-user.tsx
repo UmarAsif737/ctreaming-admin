@@ -28,14 +28,20 @@ const ActivateDeActivateModal = ({
 
   const title = `${mode} Vehicle`;
   const isActivateMode = mode === "Activate";
-  const osDeActivateMode = mode === "De Activate";
-  const buttonText ="Yes";
+  const isDeActivateMode = mode === "De Activate";
+  const buttonText = "Yes";
 
   const handleConfirm = async () => {
     // if (isDeleteMode && onConfirm) {
     //   await onConfirm("Delete");
     //   onClose();
     // }
+
+    if (isActivateMode) {
+    }
+
+    if (isDeActivateMode) {
+    }
   };
 
   return (
