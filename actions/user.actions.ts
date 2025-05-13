@@ -60,11 +60,14 @@ export async function getAllUsers({
 export async function activateUser(id: string) {
   try {
     const response = await axiosInstance.patch(
-      `/api/admin/users/${id}/activate`
+      `/api/admin/users/${id}/reactivate`
     );
     console.log("🚀 ~ response:", response.data);
     return { data: response.data.body };
   } catch (error: any) {
+    console.log({
+      error
+    })
     const errorMessage =
       error.response?.data?.error || "Activating user failed!";
     return { error: errorMessage };
@@ -79,6 +82,9 @@ export async function deActivateUser(id: string) {
     console.log("🚀 ~ response:", response.data);
     return { data: response.data.body };
   } catch (error: any) {
+       console.log({
+      error
+    })
     const errorMessage =
       error.response?.data?.error || "Deactivating user failed!";
     return { error: errorMessage };

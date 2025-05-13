@@ -6,6 +6,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { FaCheckCircle, FaPowerOff } from "react-icons/fa";
 import ActivateDeActivateModal from "./active-deactive-user";
+import { activateUser, deActivateUser } from "@/actions/user.actions";
 
 interface Props {
   item: IUser;
@@ -29,35 +30,38 @@ export const RenderCell = ({
   const cellValue = item[columnKey as keyof IUser];
 
   const handleActivateUser = async () => {
-    // toast.promise(
-    //   deleteUser(item?._id).then((result: any) => {
-    //     if (result.error) {
-    //       throw new Error(result.error);
-    //     }
-    //     return result;
-    //   }),
-    //   {
-    //     loading: "Deleting user...",
-    //     success: "User deleted successfully!",
-    //     error: "Error deleting user.",
-    //   }
-    // );
+    toast.promise(
+      activateUser(item?._id).then((result: any) => {
+        if (result.error) {
+          throw new Error(result.error);
+        }
+        fetchFreshData();
+        return result;
+      }),
+      {
+        loading: "Activating user...",
+        success: "User Activation successfully!",
+        error: "Error Activating user.",
+      }
+    );
   };
 
   const handleDeActivateUser = async () => {
-    // toast.promise(
-    //   deleteUser(item?._id).then((result: any) => {
-    //     if (result.error) {
-    //       throw new Error(result.error);
-    //     }
-    //     return result;
-    //   }),
-    //   {
-    //     loading: "Deleting user...",
-    //     success: "User deleted successfully!",
-    //     error: "Error deleting user.",
-    //   }
-    // );
+    toast.promise(
+      deActivateUser(item?._id).then((result: any) => {
+        if (result.error) {
+          throw new Error(result.error);
+        }
+        fetchFreshData();
+
+        return result;
+      }),
+      {
+        loading: "Deactivating user...",
+        success: "User Deactivation successfully!",
+        error: "Error Deactivating user.",
+      }
+    );
   };
 
   switch (columnKey) {
@@ -69,7 +73,7 @@ export const RenderCell = ({
     case "category":
       return (
         <div>
-          {String(cellValue) === undefined ? (
+          {String(cellValue) === "undefined" ? (
             <span className="italic text-[#727D73]">Not Selected</span>
           ) : (
             <>{String(cellValue)}</>
