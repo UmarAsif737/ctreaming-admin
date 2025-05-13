@@ -15,7 +15,7 @@ type UserModalProps = {
   mode: "Activate" | "De Activate";
   data?: IUser;
   button?: React.ReactNode;
-  onConfirm?: (mode: string) => Promise<void>;
+  onConfirm?: () => Promise<void>;
 };
 
 const ActivateDeActivateModal = ({
@@ -27,20 +27,12 @@ const ActivateDeActivateModal = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const title = `${mode} Vehicle`;
-  const isActivateMode = mode === "Activate";
-  const isDeActivateMode = mode === "De Activate";
   const buttonText = "Yes";
 
   const handleConfirm = async () => {
-    // if (isDeleteMode && onConfirm) {
-    //   await onConfirm("Delete");
-    //   onClose();
-    // }
-
-    if (isActivateMode) {
-    }
-
-    if (isDeActivateMode) {
+    if (onConfirm) {
+      await onConfirm();
+      onClose();
     }
   };
 
