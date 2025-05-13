@@ -5,3 +5,8 @@ export const capitalize = (str: string): string => {
 	return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
+export function decodeHtmlEntities(text: string) {
+	const textarea = document.createElement("textarea");
+	textarea.innerHTML = text;
+	return textarea.value;
+}
