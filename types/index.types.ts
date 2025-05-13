@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // export type Result = {
 //   success: string;
 //   error: null | string | boolean;
